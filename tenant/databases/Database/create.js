@@ -28,11 +28,14 @@ module.exports.create = async function create(
 
   const { email, password } = user;
 
+try {
   await axios.post(new URL('https://backend/signup'), {
     email,
     password,
     passwordConfirmation: password,
   });
-
+} catch (error) {
+  return callback(new ValidationError('user_exists', 'User already exists'));
+}
   return callback(null);
 };
