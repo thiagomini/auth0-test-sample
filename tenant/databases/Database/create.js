@@ -1,4 +1,8 @@
-module.exports.create = async function create(user, callback) {
+module.exports.create = async function create(
+  user,
+  callback,
+  axios = require('axios')
+) {
   // This script should create a user entry in your existing database. It will
   // be executed when a user attempts to sign up, or when a user is created
   // through the Auth0 dashboard or API.
@@ -21,6 +25,14 @@ module.exports.create = async function create(user, callback) {
   //     callback(new ValidationError("user_exists", "my error message"));
   // 3. Something went wrong while trying to reach your database
   //     callback(new Error("my error message"));
+
+  const { email, password } = user;
+
+  await axios.post(new URL('https://backend/signup'), {
+    email,
+    password,
+    passwordConfirmation: password,
+  });
 
   return callback(null);
 };
