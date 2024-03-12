@@ -1,4 +1,4 @@
-function create(user, callback) {
+module.exports.create = async function create(user, callback) {
   // This script should create a user entry in your existing database. It will
   // be executed when a user attempts to sign up, or when a user is created
   // through the Auth0 dashboard or API.
@@ -22,7 +22,5 @@ function create(user, callback) {
   // 3. Something went wrong while trying to reach your database
   //     callback(new Error("my error message"));
 
-  const msg = 'Please implement the Create script for this database connection ' +
-    'at https://manage.auth0.com/#/connections/database';
-  return callback(new Error(msg));
-}
+  return callback(null);
+};
