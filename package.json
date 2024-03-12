@@ -6,6 +6,9 @@
   "author": "Thiago Martins",
   "license": "MIT",
   "private": false,
+  "engines": {
+    "node": ">=20.11.1"
+  },
   "devDependencies": {
     "auth0-deploy-cli": "^7.21.0"
   }
