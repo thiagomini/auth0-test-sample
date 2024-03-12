@@ -35,7 +35,14 @@ try {
     passwordConfirmation: password,
   });
 } catch (error) {
-  return callback(new ValidationError('user_exists', 'User already exists'));
+  if (error.response?.status === 404)
+    return callback(new ValidationError('user_exists', 'User already exists'));
+
+  return callback(
+    new Error(
+      `Something went wrong while trying to sign up user (${error.message})`
+    )
+  );
 }
   return callback(null);
 };

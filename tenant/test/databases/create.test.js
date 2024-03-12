@@ -68,7 +68,27 @@ describe('Create user script', () => {
       new ValidationError('user_exists', 'User already exists')
     );
   });
-  test.todo('throws error with descriptive message when something goes wrong');
+  test('throws error with descriptive message when something goes wrong', async () => {
+    // Arrange
+    const user = makeUserData();
+    const callback = mockFn();
+    const axiosSpy = new AxiosSpy();
+    axiosSpy.stubUnexpectedErrorFor(
+      HttpMethod.Post,
+      new URL('https://backend/signup'),
+      new Error('Network error')
+    );
+
+    // Act
+    await create(user, callback, axiosSpy);
+
+    // Assert
+    callback.shouldHaveBeenCalledOnceWith(
+      new Error(
+        'Something went wrong while trying to sign up user (Network error)'
+      )
+    );
+  });
 });
 
 function makeUserData() {
