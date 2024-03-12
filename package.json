@@ -10,7 +10,8 @@
     "node": ">=20.11.1"
   },
   "scripts": {
-    "pull": "a0deploy export -c config.json --format=yaml --output_folder=tenant"
+    "pull": "a0deploy export -c config.json --format=yaml --output_folder=tenant",
+    "test": "node --test"
   },
   "devDependencies": {
     "auth0-deploy-cli": "^7.21.0"
