@@ -16,3 +16,7 @@ node_modules/
 
 # Yarn Integrity file
 .yarn-integrity
+
+config.json
+
+!config.example.json
